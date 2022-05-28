@@ -1,0 +1,54 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'io.freefair.lombok' version '5.1.0'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+//    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+
+    // https://mvnrepository.com/artifact/org.ehcache/ehcache
+    implementation group: 'org.ehcache', name: 'ehcache', version: '3.10.0'
+
+    implementation group: 'com.h2database', name: 'h2', version: '2.1.212'
+
+    // mapstruct
+    implementation group: 'org.mapstruct', name: 'mapstruct-jdk8', version: mapstructVersion
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstructVersion
+
+    // jwt token helper library
+
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: jsonwebtokenVersion
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: jsonwebtokenVersion
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: jsonwebtokenVersion
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
