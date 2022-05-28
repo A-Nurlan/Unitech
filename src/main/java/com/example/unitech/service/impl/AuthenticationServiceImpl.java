@@ -34,12 +34,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    public static final String TOKEN_DETAILS = "tokenDetails";
     public static final String INVALID_AUTHENTICATION_MESSAGE = "request is not properly authenticated";
     public static final String BAD_CREDENTIALS_MESSAGE = "username or password is incorrect";
 
     private static final String TOKEN_TYPE_ACCESS = "access";
-    private static final String TOKEN_TYPE_REFRESH = "refresh";
     private static final String TOKEN_TYPE = "tokenType";
     private static final String USER_PIN = "pin";
 

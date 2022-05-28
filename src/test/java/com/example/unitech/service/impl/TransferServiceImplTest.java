@@ -1,6 +1,7 @@
 package com.example.unitech.service.impl;
 
 import com.example.unitech.data.entity.Account;
+import com.example.unitech.data.entity.TransactionHistory;
 import com.example.unitech.data.repository.AccountRepository;
 import com.example.unitech.data.repository.TransactionHistoryRepository;
 import com.example.unitech.resource.AccountDetailsDto;
@@ -71,7 +72,7 @@ class TransferServiceImplTest {
         TransferDto requestBody = new TransferDto();
 
         Account mock = new Account();
-        mock.setStatus(0);
+        mock.setStatus(false);
 
         when(accountRepository.findAccountByAccountNumber(requestBody.getFromAccount())).thenReturn(Optional.of(mock));
 
@@ -118,10 +119,32 @@ class TransferServiceImplTest {
     public void transfer() {
         TransferDto requestBody = new TransferDto();
 
+        requestBody.setFromAccount("1111111");
+        requestBody.setToAccount("22222222");
+        requestBody.setAmount(BigDecimal.valueOf(20));
+
+        Account fromAccount=new Account();
+        Account toAccount=new Account();
+
+        when( accountRepository.findAccountByAccountNumber(requestBody.getFromAccount()))
+                .thenReturn(Optional.of(fromAccount));
+        when( accountRepository.findAccountByAccountNumber(requestBody.getToAccount()))
+                .thenReturn(Optional.of(toAccount));
+
+        fromAccount.setStatus(true);
+        fromAccount.setAccountNumber("1111111");
+        toAccount.setStatus(true);
+        toAccount.setAccountNumber("22222222");
+
+        fromAccount.setBalance(BigDecimal.valueOf(100));
+        toAccount.setBalance(BigDecimal.valueOf(100));
+
         transferService.transfer(requestBody);
 
-        verify(accountRepository, times(1))
-                .findAccountByAccountNumber(requestBody.getFromAccount());
+        TransactionHistory transactionHistory = transferMapper.from(requestBody);
+
+        verify(transactionHistoryRepository, times(1))
+                .save(transactionHistory);
     }
 
 }

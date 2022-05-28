@@ -35,7 +35,7 @@ public class TransferServiceImpl implements TransferService {
         Account toAccount = accountRepository.findAccountByAccountNumber(requestBody.getToAccount())
                 .orElseThrow(() -> new IllegalArgumentException("Receiver account doesn't exist!"));
 
-        if (fromAccount.getStatus() != 1 || toAccount.getStatus() != 1)
+        if (!fromAccount.isStatus()|| !toAccount.isStatus())
             throw new IllegalArgumentException("Sender or Receiver account is inactive !");
 
         if (fromAccount.getAccountNumber().equals(toAccount.getAccountNumber()))

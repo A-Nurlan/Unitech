@@ -12,7 +12,7 @@ public class AccountDetailsDto {
 
     private String accountNumber;
 
-    private int status;
+    private boolean status;
 
     private BigDecimal balance;
 
