@@ -12,7 +12,6 @@ import java.time.Instant;
 public class TokenPair {
 
     private TokenDetails accessToken;
-    private TokenDetails refreshToken;
 
     @Data
     @Builder

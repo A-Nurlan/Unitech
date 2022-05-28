@@ -11,15 +11,12 @@ public class ApiConstants {
 
     // resource paths
     public static final String API_AUTHENTICATION = API_BASE_PATH + "/authentication";
-    public static final String API_USERS = API_BASE_PATH + "/users";
 
     // paths
     public static final String PATH_ID = "/{id}";
     public static final String PATH_TOKEN = "/token";
-    public static final String PATH_REGISTER = "/register";
     public static final String PATH_ANT_MATCH_ALL = "/**";
 
-    public static final String PATH_OWNER_REPLY = PATH_ID + "/owner-reply";
 
     public static final String CURRENCY_URL="https://api.apilayer.com/fixer/convert";
 

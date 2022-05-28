@@ -46,18 +46,18 @@ public class CurrencyServiceImpl implements CurrencyService {
 
 
     @Override
-    public BigDecimal getCurrency(String from, String to) {
+    public String getCurrency(String from, String to) {
         String cacheKey = from + "-" + to;
 
         if (currencyCache.containsKey(cacheKey)) {
-            return currencyCache.get(cacheKey);
+            return cacheKey + "=" + currencyCache.get(cacheKey);
         }
 
         BigDecimal value = queryLatestCurrencyRate(from, to);
 
         currencyCache.put(cacheKey, value);
 
-        return value;
+        return cacheKey + "=" + value;
     }
 
     private BigDecimal queryLatestCurrencyRate(String from, String to) {

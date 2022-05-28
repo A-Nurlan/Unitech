@@ -18,9 +18,8 @@ public class CurrencyController {
     private final CurrencyService currencyService;
 
     @GetMapping
-    public BigDecimal getCurrency(@RequestParam("to") String to,
-                                  @RequestParam("from") String from,
-                                  @RequestParam("amount")String amount) {
+    public String getCurrency(@RequestParam("to") String to,
+                                  @RequestParam("from") String from) {
         return currencyService.getCurrency(from.toUpperCase(), to.toUpperCase());
     }
 
